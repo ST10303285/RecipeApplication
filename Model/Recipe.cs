@@ -90,44 +90,44 @@ namespace RecipeApplication.Model
 
             for (int i = 0;i< ingredientCount; i++) 
             {
-                Console.WriteLine($"-{Ingredients[i].Quantity}{Ingredients[i].Unit} of {Ingredients[i].Name}");
+                Console.WriteLine($"-{Ingredients[i].Quantity}{Ingredients[i].Unit} of {Ingredients[i].Name}"); // Display the ingredient
 
             }
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\nSteps:");
             Console.ResetColor();
-            for(int i = 0; i < stepCount; i++)
+            for(int i = 0; i < stepCount; i++) // Loop through the steps
             {
-                Console.WriteLine($"{i + 1}.{Steps[i].Description}");
+                Console.WriteLine($"{i + 1}.{Steps[i].Description}"); // Display the step
             }
         }
 
-        public void Scale(double factor)
+        public void Scale(double factor) // Method to scale the recipe
         {
-            for(int i=0; i<ingredientCount;i++)
+            for(int i=0; i<ingredientCount;i++) // Loop through the ingredients
             {
-                Ingredients[i].Quantity *= factor;
+                Ingredients[i].Quantity *= factor; // Scale the quantity of the ingredient
             }
         }
-        public void Reset(Ingredient[] originalIngredients)
+        public void Reset(Ingredient[] originalIngredients) // Method to reset the recipe
         {
             Console.WriteLine("Original Ingredients:");
-            for (int i = 0; i < originalIngredients.Length; i++)
+            for (int i = 0; i < originalIngredients.Length; i++) // Loop through the original ingredients
             {
-                Console.WriteLine($"{originalIngredients[i].Quantity} {originalIngredients[i].Unit} of {originalIngredients[i].Name}");
+                Console.WriteLine($"{originalIngredients[i].Quantity} {originalIngredients[i].Unit} of {originalIngredients[i].Name}"); // Display the original ingredient
             }
 
             // Check that lengths match
-            if (originalIngredients.Length != ingredientCount)
+            if (originalIngredients.Length != ingredientCount) // Check if the length of the original ingredients array does not match the ingredient count
             {
                 Console.WriteLine("The original ingredients list does not match the current recipe.");
                 return;
             }
 
-            // Reset each ingredient quantity
-            for (int i = 0; i < ingredientCount; i++)
+            // Reset each ingredient quantity to the original quantity
+            for (int i = 0; i < ingredientCount; i++) // Loop through the ingredients
             {
-                Ingredients[i].Quantity = originalIngredients[i].Quantity;
+                Ingredients[i].Quantity = originalIngredients[i].Quantity; // Reset the quantity of the ingredient
             }
 
             // Debug print statement: Check current ingredients array after reset
