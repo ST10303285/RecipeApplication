@@ -89,7 +89,7 @@ class Program
                         Console.WriteLine("\nCurrent recipe with original quantities");
                         currentRecipe.Display();
                     }
-                    else
+                    else // If there is no recipe available
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("No recipe found!");
