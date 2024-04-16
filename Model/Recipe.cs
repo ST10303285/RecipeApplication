@@ -55,25 +55,25 @@ namespace RecipeApplication.Model
 
         public void AddIngredient(Ingredient ingredient) // Method to add an ingredient
         {
-            if(ingredientCount< Ingredients.Length)
+            if(ingredientCount< Ingredients.Length) // Check if the ingredient count is less than the length of the Ingredients array
             {
-                Ingredients[ingredientCount] = ingredient;
-                ingredientCount++;
+                Ingredients[ingredientCount] = ingredient; // Add the ingredient to the Ingredients array
+                ingredientCount++; // Increment the ingredient count
             }
-            else
+            else // If the ingredient count is greater than the length of the Ingredients array
             {
                 Console.WriteLine("Unable to add more ingredients. ");
             }
         }
 
-        public void AddStep(Step step)
+        public void AddStep(Step step) // Method to add a step
         {
-            if(stepCount <Steps.Length)
+            if(stepCount <Steps.Length)     // Check if the step count is less than the length of the Steps array
             {
-                Steps[stepCount] = step;    
-                stepCount++;
+                Steps[stepCount] = step;     // Add the step to the Steps array
+                stepCount++;                // Increment the step count
             }
-            else
+            else // If the step count is greater than the length of the Steps array
             {
                 Console.WriteLine("Unable to add more steps.");
             }
