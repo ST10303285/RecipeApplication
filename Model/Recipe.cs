@@ -79,17 +79,23 @@ namespace RecipeApplication.Model
             }
         }
 
-        public void Display()
+        public void Display() // Method to display the recipe
         {
+            Console.ForegroundColor = ConsoleColor.Yellow ;
             Console.WriteLine($"\nRecipe: {Title}");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\nIngredients:");
+            Console.ResetColor();
 
-            for (int i = 0;i< ingredientCount; i++)
+            for (int i = 0;i< ingredientCount; i++) 
             {
                 Console.WriteLine($"-{Ingredients[i].Quantity}{Ingredients[i].Unit} of {Ingredients[i].Name}");
 
             }
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\nSteps:");
+            Console.ResetColor();
             for(int i = 0; i < stepCount; i++)
             {
                 Console.WriteLine($"{i + 1}.{Steps[i].Description}");
