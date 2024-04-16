@@ -27,6 +27,7 @@ class Program
 
             switch (option)
             {    //If user chooses option 1 
+                // Enter a new recipe
                 case "1":
                     currentRecipe = EnterRecipe();
                     if (currentRecipe != null)
@@ -88,7 +89,9 @@ class Program
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("No recipe found!");
+                        Console.ResetColor();
                     }
                     break;
 
