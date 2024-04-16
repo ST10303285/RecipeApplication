@@ -75,7 +75,7 @@ class Program
                     {
                         ScaleRecipe(currentRecipe);
                     }
-                    else
+                    else // If there is no recipe available
                     {
                         Console.WriteLine("No recipe available.");
                     }
