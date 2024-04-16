@@ -146,12 +146,12 @@ class Program
         }
 
         Console.Write("\nEnter the number of steps: ");
-        int numSteps = int.Parse(Console.ReadLine());
+        int numSteps = int.Parse(Console.ReadLine()); // Get the number of steps from the user
         if (numSteps != 0)
-        {
-            recipe.Steps = new Step[numSteps];
+        { // Check if the number of steps is not zero
+            recipe.Steps = new Step[numSteps]; // Initialize the steps array
         }
-        for (int i = 0; i < numSteps; i++)
+        for (int i = 0; i < numSteps; i++)  // Loop through the number of steps
         {
             Console.Write($"\nEnter description for step{i + 1}: ");
             string stepDescription = Console.ReadLine();
