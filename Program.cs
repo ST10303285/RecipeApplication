@@ -152,7 +152,7 @@ class Program
             recipe.Steps = new Step[numSteps]; // Initialize the steps array
         }
         for (int i = 0; i < numSteps; i++)  // Loop through the number of steps
-        {
+        { // Get the step description from the user
             Console.Write($"\nEnter description for step{i + 1}: ");
             string stepDescription = Console.ReadLine();
             Step step = new Step(stepDescription);
@@ -160,14 +160,14 @@ class Program
         }
 
 
-        Console.WriteLine("\nRecipe entered sucessfully!");
+        Console.WriteLine("\nRecipe entered sucessfully!"); // Display success message
         return recipe;
     }
 
-    static void ScaleRecipe(Recipe recipe)
+    static void ScaleRecipe(Recipe recipe) // Method to scale the recipe
     {
         Console.WriteLine("Enter the scaling factor (0.5 , 2, or 3):");
-        double factor = double.Parse(Console.ReadLine());
+        double factor = double.Parse(Console.ReadLine()); // Get the scaling factor from the user
         recipe.Scale(factor);
         Console.WriteLine("Recipe scaled successfully.");
     }
