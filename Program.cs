@@ -30,7 +30,7 @@ class Program
             switch (option)
             {    //If user chooses option 1 
                 // Enter a new recipe
-                case "1":
+                case "1": 
                     currentRecipe = EnterRecipe();
                     if (currentRecipe != null)
                     {
@@ -58,7 +58,7 @@ class Program
 
                     break;
 
-                case "2":
+                case "2": // Display the current recipe
                     if (currentRecipe != null)
                     {
                         Console.WriteLine("\nCurrent Recipe:");
@@ -70,7 +70,7 @@ class Program
                     }
                     break;
 
-                case "3":
+                case "3": // Scale the recipe
                     if (currentRecipe != null)
                     {
                         ScaleRecipe(currentRecipe);
@@ -81,7 +81,7 @@ class Program
                     }
                     break;
 
-                case "4":
+                case "4": // Reset Recipe quantities
                     if (currentRecipe != null) // Check if there is a recipe available
                     {
                         currentRecipe.Reset(originalIngredients); // Reset the recipe quantities
@@ -97,7 +97,7 @@ class Program
                     }
                     break;
 
-                case "5":
+                case "5": // Clear data and enter a new recipe
                     currentRecipe = null;
                     originalIngredients = null;
                     Console.WriteLine("Data cleared, you can enter a new recipe!");
