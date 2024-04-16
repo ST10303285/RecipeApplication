@@ -121,16 +121,16 @@ class Program
     {
         Console.Write("\nEnter the recipe title:");
         string title = Console.ReadLine();
-        Recipe recipe = new Recipe(title);
+        Recipe recipe = new Recipe(title); // Create a new recipe object
 
         Console.Write("Enter the number of ingredients: ");
-        int numIngredients = int.Parse(Console.ReadLine());
-        if (recipe.Ingredients != null)
+        int numIngredients = int.Parse(Console.ReadLine()); // Get the number of ingredients from the user
+        if (recipe.Ingredients != null) // Check if the ingredients array is not null
         {
-            recipe.Ingredients = new Ingredient[numIngredients];
+            recipe.Ingredients = new Ingredient[numIngredients]; // Initialize the ingredients array
         }
 
-        for (int i = 0; i < numIngredients; i++)
+        for (int i = 0; i < numIngredients; i++) // Loop through the number of ingredients
         {
             Console.Write("\nEnter Ingredient name: ");
             string ingredientName = Console.ReadLine();
