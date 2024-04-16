@@ -20,8 +20,8 @@ namespace RecipeApplication.Model
             Title = title;
             Ingredients = new Ingredient[  50]; // Array of Ingredients
             Steps = new Step[50]; //Array of Steps
-            ingredientCount = 0;
-            stepCount = 0;
+            ingredientCount = 0; // Initialize ingredient count to 0
+            stepCount = 0; // Initialize step count to 0
         }
 
         public Recipe(Recipe otherRecipe)
