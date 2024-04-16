@@ -84,7 +84,7 @@ class Program
                 case "4":
                     if (currentRecipe != null) // Check if there is a recipe available
                     {
-                        currentRecipe.Reset(originalIngredients);
+                        currentRecipe.Reset(originalIngredients); // Reset the recipe quantities
                         Console.WriteLine("Recipe quantities have been reset to original ");
                         Console.WriteLine("\nCurrent recipe with original quantities");
                         currentRecipe.Display();
