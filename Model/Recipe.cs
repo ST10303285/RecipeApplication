@@ -24,36 +24,36 @@ namespace RecipeApplication.Model
             stepCount = 0; // Initialize step count to 0
         }
 
-        public Recipe(Recipe otherRecipe)
+        public Recipe(Recipe otherRecipe) // Copy Constructor
         {
-            if (otherRecipe==null)
+            if (otherRecipe==null) // Check if otherRecipe is null
                 throw new ArgumentNullException(nameof(otherRecipe),"Other recipe cannot be null.");
 
-            Title = otherRecipe.Title;
+            Title = otherRecipe.Title; // Copy the title
 
-            Ingredients = new Ingredient[otherRecipe.Ingredients.Length];
+            Ingredients = new Ingredient[otherRecipe.Ingredients.Length]; // Copy the ingredients
             
-            for (int i=1;i<otherRecipe.Ingredients.Length;i++)
+            for (int i=1;i<otherRecipe.Ingredients.Length;i++) // Loop through the ingredients
             {
-                if (otherRecipe.Ingredients[i] == null)
+                if (otherRecipe.Ingredients[i] == null) // Check if the ingredient is null
                 {
                     Ingredients[i] = new Ingredient(otherRecipe.Ingredients[i].Name, otherRecipe.Ingredients[i].Quantity, otherRecipe.Ingredients[i].Unit);
                 }
                
             }
 
-            Steps = new Step[otherRecipe.Steps.Length];
+            Steps = new Step[otherRecipe.Steps.Length]; // Copy the steps
             
-            for (int i =0; i<otherRecipe.Steps.Length; i++)
+            for (int i =0; i<otherRecipe.Steps.Length; i++) // Loop through the steps
             {
-                if (otherRecipe.Steps[i] == null)
+                if (otherRecipe.Steps[i] == null) // Check if the step is null
                 {
-                    Steps[i] = new Step(otherRecipe.Steps[i].Description);
+                    Steps[i] = new Step(otherRecipe.Steps[i].Description); // Copy the step
                 }
             }
         }
 
-        public void AddIngredient(Ingredient ingredient)
+        public void AddIngredient(Ingredient ingredient) // Method to add an ingredient
         {
             if(ingredientCount< Ingredients.Length)
             {
