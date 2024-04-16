@@ -61,12 +61,16 @@ class Program
                 case "2": // Display the current recipe
                     if (currentRecipe != null)
                     {
+                        Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine("\nCurrent Recipe:");
+                        Console.ResetColor();
                         currentRecipe.Display();
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("No recipe available");
+                        Console.ResetColor();
                     }
                     break;
 
@@ -77,7 +81,9 @@ class Program
                     }
                     else // If there is no recipe available
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("No recipe available.");
+                        Console.ResetColor();
                     }
                     break;
 
@@ -108,7 +114,9 @@ class Program
                     return;
 
                 default: // If the user enters an invalid option
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid Option, please try again.");
+                    Console.ResetColor();
                     break;
 
 
