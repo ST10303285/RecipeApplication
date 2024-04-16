@@ -132,9 +132,9 @@ namespace RecipeApplication.Model
 
             // Debug print statement: Check current ingredients array after reset
             Console.WriteLine("Current Ingredients after Reset:");
-            for (int i = 0; i < ingredientCount; i++)
+            for (int i = 0; i < ingredientCount; i++) // Loop through the ingredients
             {
-                Console.WriteLine($"{Ingredients[i].Quantity} {Ingredients[i].Unit} of {Ingredients[i].Name}");
+                Console.WriteLine($"{Ingredients[i].Quantity} {Ingredients[i].Unit} of {Ingredients[i].Name}"); // Display the ingredient
             }
 
             Console.WriteLine("Recipe quantities have been reset to original.");

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace RecipeApplication.Model
 {
-    internal class Step
+    internal class Step //internal class Step
     {
 
-        public string Description { get; set; }
+        public string Description { get; set; } // Property Description
 
-        public Step(string description)
+        public Step(string description) // Constructor
         {
-            Description = description;
+            Description = description; // Initialize the Description property
         }
     }
 }
