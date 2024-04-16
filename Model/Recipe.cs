@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace RecipeApplication.Model
 {
-    internal class Recipe
-    {
-        public string Title { get; set; }
+    internal class Recipe // internal class Recipe
+    { 
+        public string Title { get; set; } 
         public Ingredient[]Ingredients { get; set; }
         public Step[]Steps { get;set; }
 
-        private int ingredientCount;
+        private int ingredientCount; 
         private int stepCount;
          
-        public Recipe(string title)
+        public Recipe(string title) // Constructor
         {
             Title = title;
-            Ingredients = new Ingredient[  50];
-            Steps = new Step[50];
+            Ingredients = new Ingredient[  50]; // Array of Ingredients
+            Steps = new Step[50]; //Array of Steps
             ingredientCount = 0;
             stepCount = 0;
         }
