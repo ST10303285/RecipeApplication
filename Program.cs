@@ -22,7 +22,9 @@ class Program
             Console.WriteLine("4. Reset Recipe quantities");
             Console.WriteLine("5. Clear data and enter a new recipe");
             Console.WriteLine("6. Exit");
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Choose an option:");
+            Console.ResetColor();
             string option = Console.ReadLine();
 
             switch (option)
