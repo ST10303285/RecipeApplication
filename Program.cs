@@ -24,7 +24,7 @@ class Program
             string option = Console.ReadLine();
 
             switch (option)
-            {
+            {    //If user chooses option 1 
                 case "1":
                     currentRecipe = EnterRecipe();
                     if (currentRecipe != null)
