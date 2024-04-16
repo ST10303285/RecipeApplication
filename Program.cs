@@ -14,6 +14,7 @@ class Program
 
         while (true)
         {
+            // Display the menu
             Console.WriteLine("\nRecipe App Menu:");
             Console.WriteLine("1. Enter a new recipe");
             Console.WriteLine("2. Display the current recipe");
