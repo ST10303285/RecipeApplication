@@ -103,11 +103,11 @@ class Program
                     Console.WriteLine("Data cleared, you can enter a new recipe!");
                     break;
 
-                case "6":
+                case "6": // Exit the application
                     Console.WriteLine("Exiting the application");
                     return;
 
-                default:
+                default: // If the user enters an invalid option
                     Console.WriteLine("Invalid Option, please try again.");
                     break;
 
@@ -117,7 +117,7 @@ class Program
             }
         }
     }
-    static Recipe EnterRecipe()
+    static Recipe EnterRecipe() // Method to enter a new recipe
     {
         Console.Write("\nEnter the recipe title:");
         string title = Console.ReadLine();
