@@ -18,7 +18,7 @@ namespace RecipeApplication.Model
         public Recipe(string title)
         {
             Title = title;
-            Ingredients = new Ingredient[50];
+            Ingredients = new Ingredient[  50];
             Steps = new Step[50];
             ingredientCount = 0;
             stepCount = 0;

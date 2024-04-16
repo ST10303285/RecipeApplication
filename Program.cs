@@ -8,10 +8,11 @@ class Program
 {
     static void Main(string[] args)
     {
+        // Create a new recipe object
         Recipe currentRecipe = null;
         Ingredient[] originalIngredients = null;
 
-        while(true)
+        while (true)
         {
             Console.WriteLine("\nRecipe App Menu:");
             Console.WriteLine("1. Enter a new recipe");
@@ -33,6 +34,7 @@ class Program
 
                         for (int i = 0; i < currentRecipe.Ingredients.Length; i++)
                         {
+                            //ddd
                             // Check that the current ingredient is not null before copying
                             if (currentRecipe.Ingredients[i] != null)
                             {
@@ -45,15 +47,15 @@ class Program
                             else
                             {
                                 // Handle the case when an ingredient is null (optional, depends on use case)
-                               
+
                             }
                         }
                     }
-                    
+
                     break;
 
                 case "2":
-                    if (currentRecipe  != null)
+                    if (currentRecipe != null)
                     {
                         Console.WriteLine("\nCurrent Recipe:");
                         currentRecipe.Display();
@@ -64,8 +66,8 @@ class Program
                     }
                     break;
 
-                case "3": 
-                    if(currentRecipe!= null)
+                case "3":
+                    if (currentRecipe != null)
                     {
                         ScaleRecipe(currentRecipe);
                     }
@@ -76,7 +78,7 @@ class Program
                     break;
 
                 case "4":
-                    if(currentRecipe != null)
+                    if (currentRecipe != null)
                     {
                         currentRecipe.Reset(originalIngredients);
                         Console.WriteLine("Recipe quantities have been reset to original ");
@@ -97,13 +99,13 @@ class Program
 
                 case "6":
                     Console.WriteLine("Exiting the application");
-                    return;  
+                    return;
 
                 default:
                     Console.WriteLine("Invalid Option, please try again.");
                     break;
 
-                    
+
 
 
             }
@@ -139,18 +141,18 @@ class Program
 
         Console.Write("\nEnter the number of steps: ");
         int numSteps = int.Parse(Console.ReadLine());
-        if (numSteps != 0) 
-        { 
-        recipe.Steps = new Step[numSteps];
+        if (numSteps != 0)
+        {
+            recipe.Steps = new Step[numSteps];
         }
         for (int i = 0; i < numSteps; i++)
         {
             Console.Write($"\nEnter description for step{i + 1}: ");
-            string stepDescription = Console.ReadLine(); 
-            Step step = new Step(stepDescription); 
+            string stepDescription = Console.ReadLine();
+            Step step = new Step(stepDescription);
             recipe.AddStep(step);
         }
-        
+
 
         Console.WriteLine("\nRecipe entered sucessfully!");
         return recipe;
