@@ -38,7 +38,7 @@ class Program
 
                         for (int i = 0; i < currentRecipe.Ingredients.Length; i++)
                         {
-                            //ddd
+                            // Copy the ingredients to the originalIngredients array
                             // Check that the current ingredient is not null before copying
                             if (currentRecipe.Ingredients[i] != null)
                             {
@@ -82,7 +82,7 @@ class Program
                     break;
 
                 case "4":
-                    if (currentRecipe != null)
+                    if (currentRecipe != null) // Check if there is a recipe available
                     {
                         currentRecipe.Reset(originalIngredients);
                         Console.WriteLine("Recipe quantities have been reset to original ");
