@@ -27,7 +27,7 @@ class Program
             // Display the menu
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("\nRecipe App Menu:");
-            Console.ResetColor();   
+            Console.ResetColor();
             Console.WriteLine("1. Enter a new recipe");
             Console.WriteLine("2. Display the current recipe");
             Console.WriteLine("3. Scale the recipe");
@@ -42,7 +42,7 @@ class Program
             switch (option)
             {    //If user chooses option 1 
                 // Enter a new recipe
-                case "1": 
+                case "1":
                     currentRecipe = EnterRecipe();
                     if (currentRecipe != null)
                     {
@@ -60,7 +60,7 @@ class Program
                                     currentRecipe.Ingredients[i].Unit
                                 );
                             }
-                           
+
                         }
                     }
 
@@ -135,57 +135,80 @@ class Program
     }
     static Recipe EnterRecipe() // Method to enter a new recipe
     {
-        try { 
-        Console.Write("\nEnter the recipe title:");
-        string title = Console.ReadLine();
-        Recipe recipe = new Recipe(title); // Create a new recipe object
-
-        Console.Write("Enter the number of ingredients: ");
-       
-        if (!int.TryParse(Console.ReadLine(),out int numIngredients) || numIngredients <= 0) 
+        try
         {
+            Console.Write("\nEnter the recipe title:");
+            string title = Console.ReadLine();
+            Recipe recipe = new Recipe(title); // Create a new recipe object
+
+            Console.Write("Enter the number of ingredients: ");
+
+            if (!int.TryParse(Console.ReadLine(), out int numIngredients) || numIngredients <= 0)
+            {
                 throw new ArgumentException("Number of Ingredients must be a positive integer.");
-        }
+            }
+            recipe.Ingredients = new Ingredient[numIngredients];
+            for (int i = 0; i < numIngredients; i++) // Loop through the number of ingredients
+            {
+                Console.Write("\nEnter Ingredient name: ");
+                string ingredientName = Console.ReadLine();
 
-        for (int i = 0; i < numIngredients; i++) // Loop through the number of ingredients
-        {
-            Console.Write("\nEnter Ingredient name: ");
-            string ingredientName = Console.ReadLine();
+                Console.Write("Enter the quantity of the ingredient: ");
+                //ouble ingredientQuantity = double.Parse(Console.ReadLine());
+                if (!double.TryParse(Console.ReadLine(), out double ingredientQuantity) || ingredientQuantity <= 0)
+                {
+                    throw new ArgumentException("Quantity must be a positive number.");
+                }
 
-            Console.Write("Enter the quantity of the ingredient: ");
-            double ingredientQuantity = double.Parse(Console.ReadLine());
+                Console.Write("Enter unit of measurement: ");
+                string ingredientUnit = Console.ReadLine();
 
-            Console.Write("Enter unit of measurement: ");
-            string ingredientUnit = Console.ReadLine();
+                Ingredient ingredient = new Ingredient(ingredientName, ingredientQuantity, ingredientUnit);
+                recipe.AddIngredient(ingredient);
+            }
 
-            Ingredient ingredient = new Ingredient(ingredientName, ingredientQuantity, ingredientUnit);
-            recipe.AddIngredient(ingredient);
-        }
+            Console.Write("\nEnter the number of steps: ");
+            if (!int.TryParse(Console.ReadLine(), out int numSteps) || numSteps <= 0)
+            {
+                throw new ArgumentException("Number of steps must be a positive integer.");
+            }
 
-        Console.Write("\nEnter the number of steps: ");
-        int numSteps = int.Parse(Console.ReadLine()); // Get the number of steps from the user
-        if (numSteps != 0)
-        { // Check if the number of steps is not zero
+
+
             recipe.Steps = new Step[numSteps]; // Initialize the steps array
-        }
-        for (int i = 0; i < numSteps; i++)  // Loop through the number of steps
-        { // Get the step description from the user
-            Console.Write($"\nEnter description for step{i + 1}: ");
-            string stepDescription = Console.ReadLine();
-            Step step = new Step(stepDescription);
-            recipe.AddStep(step);
-        }
+
+            for (int i = 0; i < numSteps; i++)  // Loop through the number of steps
+            { // Get the step description from the user
+                Console.Write($"\nEnter description for step{i + 1}: ");
+                string stepDescription = Console.ReadLine();
+                Step step = new Step(stepDescription);
+                recipe.AddStep(step);
+            }
 
 
-        Console.WriteLine("\nRecipe entered sucessfully!"); // Display success message
-        return recipe;
+            Console.WriteLine("\nRecipe entered sucessfully!"); // Display success message
+            return recipe;
+        }
+        catch (Exception ex)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Error: {ex.Message}");
+            Console.ResetColor();
+            return null;
+        }
     }
 
-    static void ScaleRecipe(Recipe recipe) // Method to scale the recipe
+    static void ScaleCurrentRecipe(Recipe currentRecipe)
     {
-        Console.WriteLine("Enter the scaling factor (0.5 , 2, or 3):");
-        double factor = double.Parse(Console.ReadLine()); // Get the scaling factor from the user
-        recipe.Scale(factor);
-        Console.WriteLine("Recipe scaled successfully.");
+        if (currentRecipe != null)
+        {
+            ScaleRecipe(currentRecipe);
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("No recipe available.");
+            Console.ResetColor();
+        }
     }
 }
