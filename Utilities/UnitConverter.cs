@@ -25,10 +25,11 @@ namespace RecipeApplication.Utilities
                 var toUnit = parts[1];
                 var factor = conversion.Value;
 
-                if (unit == fromUnit && quantity >= 1 / factor)
+                if (unit == fromUnit)
                 {
                     quantity *= factor;
                     unit = toUnit;
+                    break; 
                 }
             }
             return (quantity, unit);

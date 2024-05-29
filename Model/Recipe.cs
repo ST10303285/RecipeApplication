@@ -19,17 +19,18 @@ namespace RecipeApplication.Model
     internal class Recipe // internal class Recipe
     { 
         public string Title { get; set; } 
-        public Ingredient[]Ingredients { get; set; }
-        public Step[]Steps { get;set; }
+        public List<Ingredient> Ingredients { get; set; }
+        public List<string> Steps { get; set;}
 
         private int ingredientCount; 
         private int stepCount;
          
         public Recipe(string title) // Constructor
         {
+            if(string.IsNullOrWhiteSpace(title))throw new ArgumentException("Title cannot be null or empty."); // Check if the title is null or empty
             Title = title;
-            Ingredients = new Ingredient[  50]; // Array of Ingredients
-            Steps = new Step[50]; //Array of Steps
+            Ingredients = new List<Ingredient>();
+            Steps = new List<string> ();
             ingredientCount = 0; // Initialize ingredient count to 0
             stepCount = 0; // Initialize step count to 0
         }
@@ -41,9 +42,9 @@ namespace RecipeApplication.Model
 
             Title = otherRecipe.Title; // Copy the title
 
-            Ingredients = new Ingredient[otherRecipe.Ingredients.Length]; // Copy the ingredients
+            Ingredients = new List<Ingredient>(otherRecipe.Ingredients.Count); // Copy the ingredients
             
-            for (int i=1;i<otherRecipe.Ingredients.Length;i++) // Loop through the ingredients
+            for (int i=0;i<otherRecipe.Ingredients.Count;i++) // Loop through the ingredients
             {
                 if (otherRecipe.Ingredients[i] == null) // Check if the ingredient is null
                 {
@@ -100,7 +101,7 @@ namespace RecipeApplication.Model
 
             for (int i = 0;i< ingredientCount; i++) 
             {
-                Console.WriteLine($"-{Ingredients[i].Quantity}{Ingredients[i].Unit} of {Ingredients[i].Name}"); // Display the ingredient
+                Console.WriteLine($"-{Ingredients[i].Quantity} {Ingredients[i].Unit} of {Ingredients[i].Name}"); // Display the ingredient
 
             }
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -148,6 +149,19 @@ namespace RecipeApplication.Model
             }
 
             Console.WriteLine("Recipe quantities have been reset to original.");
+        }
+
+        public int TotalCalories
+        {
+            get
+            {
+                int total = 0;
+                foreach(var ingredient in Ingredients)
+                {
+                    total += ingredient.Calories;
+                }
+                return total;
+            }
         }
     }
 

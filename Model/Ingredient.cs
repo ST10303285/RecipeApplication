@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using RecipeApplication.Utilities;
@@ -23,12 +24,22 @@ namespace RecipeApplication.Model
         public string Name { get; set; }
         public double Quantity { get; set; }
         public string Unit { get; set; }
+        public int Calories { get; set; }
+        public string FoodGroup { get; set; }
 
-        public Ingredient(string name, double quantity, string unit) //Constructor
+        public Ingredient(string name, double quantity, string unit,int calories,string foodGroup) //Constructor
         {
+            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Ingredient name cannot be null or empty");
+            if (quantity < 0) throw new ArgumentException("Quantity cannot be negative");
+            if (string.IsNullOrWhiteSpace(unit)) throw new ArgumentException("Unit cannot be null or empty");
+            if (calories < 0) throw new ArgumentException("Calories cannot be negative");
+            if (string.IsNullOrWhiteSpace(foodGroup)) throw new ArgumentException("Food group cannot be null or empty");
+
             Name = name;
             Quantity = quantity;
             Unit = unit;
+            Calories = calories;
+            FoodGroup = foodGroup;
         }
 
         public void Scale(double factor) // Method to scale the quantity of the ingredient
