@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RecipeApplication.Utilities;
 
 namespace RecipeApplication.Model
 {
@@ -33,6 +34,7 @@ namespace RecipeApplication.Model
         public void Scale(double factor) // Method to scale the quantity of the ingredient
         { 
             Quantity *= factor;
+            (Quantity, Unit) = UnitConverter.Convert(Quantity, Unit);
         }
     }
 }

@@ -137,29 +137,26 @@ class Program
     {
         try
         {
-            Console.Write("\nEnter the recipe title:");
+            Console.Write("\nEnter the recipe title: ");
             string title = Console.ReadLine();
-            Recipe recipe = new Recipe(title); // Create a new recipe object
+            Recipe recipe = new Recipe(title);
 
             Console.Write("Enter the number of ingredients: ");
-
             if (!int.TryParse(Console.ReadLine(), out int numIngredients) || numIngredients <= 0)
             {
-                throw new ArgumentException("Number of Ingredients must be a positive integer.");
+                throw new ArgumentException("Number of ingredients must be a positive integer.");
             }
+
             recipe.Ingredients = new Ingredient[numIngredients];
-            for (int i = 0; i < numIngredients; i++) // Loop through the number of ingredients
+            for (int i = 0; i < numIngredients; i++)
             {
                 Console.Write("\nEnter Ingredient name: ");
                 string ingredientName = Console.ReadLine();
-
                 Console.Write("Enter the quantity of the ingredient: ");
-                //ouble ingredientQuantity = double.Parse(Console.ReadLine());
                 if (!double.TryParse(Console.ReadLine(), out double ingredientQuantity) || ingredientQuantity <= 0)
                 {
                     throw new ArgumentException("Quantity must be a positive number.");
                 }
-
                 Console.Write("Enter unit of measurement: ");
                 string ingredientUnit = Console.ReadLine();
 
@@ -173,20 +170,16 @@ class Program
                 throw new ArgumentException("Number of steps must be a positive integer.");
             }
 
-
-
-            recipe.Steps = new Step[numSteps]; // Initialize the steps array
-
-            for (int i = 0; i < numSteps; i++)  // Loop through the number of steps
-            { // Get the step description from the user
-                Console.Write($"\nEnter description for step{i + 1}: ");
+            recipe.Steps = new Step[numSteps];
+            for (int i = 0; i < numSteps; i++)
+            {
+                Console.Write($"\nEnter description for step {i + 1}: ");
                 string stepDescription = Console.ReadLine();
                 Step step = new Step(stepDescription);
                 recipe.AddStep(step);
             }
 
-
-            Console.WriteLine("\nRecipe entered sucessfully!"); // Display success message
+            Console.WriteLine("\nRecipe entered successfully!");
             return recipe;
         }
         catch (Exception ex)
@@ -198,17 +191,24 @@ class Program
         }
     }
 
-    static void ScaleCurrentRecipe(Recipe currentRecipe)
+    static void ScaleRecipe(Recipe currentRecipe)
     {
-        if (currentRecipe != null)
+        try
         {
-            ScaleRecipe(currentRecipe);
+            Console.WriteLine("Enter the scaling factor (e.g., 0.5, 2, or 3): ");
+            if (!double.TryParse(Console.ReadLine(), out double factor) || factor <= 0)
+            {
+                throw new ArgumentException("Scaling factor must be a positive number.");
+            }
+           currentRecipe.Scale(factor);
+            Console.WriteLine("Recipe scaled successfully.");
         }
-        else
+        catch (Exception ex)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("No recipe available.");
+            Console.WriteLine($"Error: {ex.Message}");
             Console.ResetColor();
         }
     }
+
 }
