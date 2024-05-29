@@ -1,4 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
+//Wadiha Boat
+//ST10303285
+//GROUP 2 
+//https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0163?f1url=%3FappId%3Droslyn%26k%3Dk(CS0163)
+//https://learn.microsoft.com/en-us/dotnet/csharp/misc/cs1503?f1url=%3FappId%3Droslyn%26k%3Dk(CS1503)
+//https://www.geeksforgeeks.org/c-sharp-how-to-change-foreground-color-of-text-in-console/
+//https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays
+//https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository
+//https://www.w3schools.com/git/git_commit.asp?remote=github
 using System;
 using RecipeApplication.Model;
 using System.Collections.Generic;
@@ -15,7 +25,9 @@ class Program
         while (true)
         {
             // Display the menu
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("\nRecipe App Menu:");
+            Console.ResetColor();   
             Console.WriteLine("1. Enter a new recipe");
             Console.WriteLine("2. Display the current recipe");
             Console.WriteLine("3. Scale the recipe");
@@ -48,11 +60,7 @@ class Program
                                     currentRecipe.Ingredients[i].Unit
                                 );
                             }
-                            else
-                            {
-                                // Handle the case when an ingredient is null (optional, depends on use case)
-
-                            }
+                           
                         }
                     }
 
@@ -127,15 +135,16 @@ class Program
     }
     static Recipe EnterRecipe() // Method to enter a new recipe
     {
+        try { 
         Console.Write("\nEnter the recipe title:");
         string title = Console.ReadLine();
         Recipe recipe = new Recipe(title); // Create a new recipe object
 
         Console.Write("Enter the number of ingredients: ");
-        int numIngredients = int.Parse(Console.ReadLine()); // Get the number of ingredients from the user
-        if (recipe.Ingredients != null) // Check if the ingredients array is not null
+       
+        if (!int.TryParse(Console.ReadLine(),out int numIngredients) || numIngredients <= 0) 
         {
-            recipe.Ingredients = new Ingredient[numIngredients]; // Initialize the ingredients array
+                throw new ArgumentException("Number of Ingredients must be a positive integer.");
         }
 
         for (int i = 0; i < numIngredients; i++) // Loop through the number of ingredients
