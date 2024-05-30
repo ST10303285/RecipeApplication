@@ -232,7 +232,7 @@ public class Program
         }
     }
 
-    static void ResetRecipeQuantities()
+    static void ResetRecipeQuantities() // Reset the quantities of the recipe
     {
         Console.Write("Enter the name of the recipe to reset: ");
         string name = Console.ReadLine();
