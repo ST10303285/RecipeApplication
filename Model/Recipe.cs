@@ -16,156 +16,163 @@ using System.Threading.Tasks;
 
 namespace RecipeApplication.Model
 {
-    internal class Recipe // internal class Recipe
-    { 
-        public string Title { get; set; } 
-        public List<Ingredient> Ingredients { get; set; }
-        public List<string> Steps { get; set;}
+    public class Recipe //  class Recipe
+    {
+        public string Title { get; set; }
+        public List<Ingredient> Ingredients { get; set; }  // List of Ingredients
+        public List<Step> Steps { get; set; }
 
-        private int ingredientCount; 
+        public delegate void CalorieAlert(string message); // Delegate for the CalorieAlert event
+        public event CalorieAlert onCalorieAlert;
+
+        private int ingredientCount;
         private int stepCount;
-         
+
+
         public Recipe(string title) // Constructor
         {
-            if(string.IsNullOrWhiteSpace(title))throw new ArgumentException("Title cannot be null or empty."); // Check if the title is null or empty
+
             Title = title;
             Ingredients = new List<Ingredient>();
-            Steps = new List<string> ();
+            Steps = new List<Step>();
+
             ingredientCount = 0; // Initialize ingredient count to 0
             stepCount = 0; // Initialize step count to 0
         }
 
+
         public Recipe(Recipe otherRecipe) // Copy Constructor
         {
-            if (otherRecipe==null) // Check if otherRecipe is null
-                throw new ArgumentNullException(nameof(otherRecipe),"Other recipe cannot be null.");
+            if (otherRecipe == null) // Check if otherRecipe is null
+                throw new ArgumentNullException(nameof(otherRecipe), "Other recipe cannot be null.");
 
             Title = otherRecipe.Title; // Copy the title
 
             Ingredients = new List<Ingredient>(otherRecipe.Ingredients.Count); // Copy the ingredients
-            
-            for (int i=0;i<otherRecipe.Ingredients.Count;i++) // Loop through the ingredients
+
+            for (int i = 0; i < otherRecipe.Ingredients.Count; i++) // Loop through the ingredients
             {
                 if (otherRecipe.Ingredients[i] == null) // Check if the ingredient is null
                 {
-                    Ingredients[i] = new Ingredient(otherRecipe.Ingredients[i].Name, otherRecipe.Ingredients[i].Quantity, otherRecipe.Ingredients[i].Unit);
+                    Ingredients[i] = new Ingredient(otherRecipe.Ingredients[i].Name, otherRecipe.Ingredients[i].Quantity, otherRecipe.Ingredients[i].Unit, otherRecipe.Ingredients[i].Calories, otherRecipe.Ingredients[i].FoodGroup);
                 }
-               
+
             }
 
-            Steps = new Step[otherRecipe.Steps.Length]; // Copy the steps
-            
-            for (int i =0; i<otherRecipe.Steps.Length; i++) // Loop through the steps
+            Steps = new List<Step>(otherRecipe.Steps); // Copy the steps
+
+            for (int i = 0; i < otherRecipe.Steps.Count; i++) // Loop through the steps
             {
                 if (otherRecipe.Steps[i] == null) // Check if the step is null
                 {
-                    Steps[i] = new Step(otherRecipe.Steps[i].Description); // Copy the step
+                    Steps[i] = otherRecipe.Steps[i]; // Copy the step
                 }
             }
         }
 
         public void AddIngredient(Ingredient ingredient) // Method to add an ingredient
         {
-            if(ingredientCount< Ingredients.Length) // Check if the ingredient count is less than the length of the Ingredients array
-            {
-                Ingredients[ingredientCount] = ingredient; // Add the ingredient to the Ingredients array
-                ingredientCount++; // Increment the ingredient count
-            }
-            else // If the ingredient count is greater than the length of the Ingredients array
-            {
-                Console.WriteLine("Unable to add more ingredients. ");
-            }
+            
+            Ingredients.Add(ingredient);
+            
         }
 
         public void AddStep(Step step) // Method to add a step
         {
-            if(stepCount <Steps.Length)     // Check if the step count is less than the length of the Steps array
-            {
-                Steps[stepCount] = step;     // Add the step to the Steps array
-                stepCount++;                // Increment the step count
-            }
-            else // If the step count is greater than the length of the Steps array
-            {
-                Console.WriteLine("Unable to add more steps.");
-            }
+            
+            Steps.Add(step);
+            
         }
 
         public void Display() // Method to display the recipe
         {
-            Console.ForegroundColor = ConsoleColor.Yellow ;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"\nRecipe: {Title}");
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\nIngredients:");
             Console.ResetColor();
 
-            for (int i = 0;i< ingredientCount; i++) 
+            foreach (var ingredient in Ingredients)
             {
-                Console.WriteLine($"-{Ingredients[i].Quantity} {Ingredients[i].Unit} of {Ingredients[i].Name}"); // Display the ingredient
+                Console.WriteLine($"-{ingredient.Quantity} {ingredient.Unit} of {ingredient.Name}({ingredient.Calories}calories,{ingredient.FoodGroup})"); // Display the ingredient
 
             }
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\nSteps:");
             Console.ResetColor();
-            for(int i = 0; i < stepCount; i++) // Loop through the steps
+
+            for (int i = 0; i < stepCount; i++) // Loop through the steps
             {
-                Console.WriteLine($"{i + 1}.{Steps[i].Description}"); // Display the step
+                Console.WriteLine($"\n{i + 1}.{Steps[i].Description}"); // Display the step
+            }
+
+            int totalCalories = CalculateTotalCalories(); // Calculate the total calories
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nTotal Calories: {totalCalories}");
+            Console.ResetColor();
+
+            if (totalCalories > 300) // Check if the total calories exceed 300
+            {
+                onCalorieAlert?.Invoke($"Warning! The total calories of the recipe '{Title}' exceed 300!"); // Raise the event
             }
         }
+
+        public int CalculateTotalCalories()
+        {
+            return Ingredients.Sum(ingredient => ingredient.Calories);
+        }
+
+
 
         public void Scale(double factor) // Method to scale the recipe
         {
-            for(int i=0; i<ingredientCount;i++) // Loop through the ingredients
+            foreach (var ingredient in Ingredients) // Loop through the ingredients
             {
-                Ingredients[i].Quantity *= factor; // Scale the quantity of the ingredient
+                ingredient.Scale(factor); // Scale the quantity of the ingredient
             }
         }
-        public void Reset(Ingredient[] originalIngredients) // Method to reset the recipe
+
+        public void Reset(List<Ingredient> originalIngredients) // Method to reset the recipe quantities
         {
-            Console.WriteLine("Original Ingredients:");
-            for (int i = 0; i < originalIngredients.Length; i++) // Loop through the original ingredients
+            Ingredients = new List<Ingredient>(originalIngredients); // Reset the ingredients
+            Console.WriteLine("Recipe quantities have been reset to original ");
             {
-                Console.WriteLine($"{originalIngredients[i].Quantity} {originalIngredients[i].Unit} of {originalIngredients[i].Name}"); // Display the original ingredient
+                //Console.WriteLine("Original Ingredients:");
+                //for (int i = 0; i < originalIngredients.Length; i++) // Loop through the original ingredients
+                //{
+                //    Console.WriteLine($"{originalIngredients[i].Quantity} {originalIngredients[i].Unit} of {originalIngredients[i].Name}"); // Display the original ingredient
+                //}
+
+                //// Check that lengths match
+                //if (originalIngredients.Length != ingredientCount) // Check if the length of the original ingredients array does not match the ingredient count
+                //{
+                //    Console.WriteLine("The original ingredients list does not match the current recipe.");
+                //    return;
+                //}
+
+                //// Reset each ingredient quantity to the original quantity
+                //for (int i = 0; i < ingredientCount; i++) // Loop through the ingredients
+                //{
+                //    Ingredients[i].Quantity = originalIngredients[i].Quantity; // Reset the quantity of the ingredient
+                //}
+
+                //// Debug print statement: Check current ingredients array after reset
+                //Console.WriteLine("Current Ingredients after Reset:");
+                //for (int i = 0; i < ingredientCount; i++) // Loop through the ingredients
+                //{
+                //    Console.WriteLine($"{Ingredients[i].Quantity} {Ingredients[i].Unit} of {Ingredients[i].Name}"); // Display the ingredient
+                //}
+
+                //Console.WriteLine("Recipe quantities have been reset to original.");
+
             }
 
-            // Check that lengths match
-            if (originalIngredients.Length != ingredientCount) // Check if the length of the original ingredients array does not match the ingredient count
-            {
-                Console.WriteLine("The original ingredients list does not match the current recipe.");
-                return;
-            }
 
-            // Reset each ingredient quantity to the original quantity
-            for (int i = 0; i < ingredientCount; i++) // Loop through the ingredients
-            {
-                Ingredients[i].Quantity = originalIngredients[i].Quantity; // Reset the quantity of the ingredient
-            }
-
-            // Debug print statement: Check current ingredients array after reset
-            Console.WriteLine("Current Ingredients after Reset:");
-            for (int i = 0; i < ingredientCount; i++) // Loop through the ingredients
-            {
-                Console.WriteLine($"{Ingredients[i].Quantity} {Ingredients[i].Unit} of {Ingredients[i].Name}"); // Display the ingredient
-            }
-
-            Console.WriteLine("Recipe quantities have been reset to original.");
         }
 
-        public int TotalCalories
-        {
-            get
-            {
-                int total = 0;
-                foreach(var ingredient in Ingredients)
-                {
-                    total += ingredient.Calories;
-                }
-                return total;
-            }
-        }
     }
-
- }
+}
 
 
 

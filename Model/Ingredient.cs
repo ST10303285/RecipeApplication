@@ -18,7 +18,7 @@ using RecipeApplication.Utilities;
 
 namespace RecipeApplication.Model
 {
-    internal class Ingredient // internal class Ingredient
+    public  class Ingredient // internal class Ingredient
     {
 
         public string Name { get; set; }
@@ -29,11 +29,7 @@ namespace RecipeApplication.Model
 
         public Ingredient(string name, double quantity, string unit,int calories,string foodGroup) //Constructor
         {
-            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Ingredient name cannot be null or empty");
-            if (quantity < 0) throw new ArgumentException("Quantity cannot be negative");
-            if (string.IsNullOrWhiteSpace(unit)) throw new ArgumentException("Unit cannot be null or empty");
-            if (calories < 0) throw new ArgumentException("Calories cannot be negative");
-            if (string.IsNullOrWhiteSpace(foodGroup)) throw new ArgumentException("Food group cannot be null or empty");
+            
 
             Name = name;
             Quantity = quantity;

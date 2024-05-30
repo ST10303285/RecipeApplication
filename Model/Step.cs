@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace RecipeApplication.Model
 {
-    internal class Step //internal class Step
+    public  class Step //internal class Step
     {
 
         public string Description { get; set; } // Property Description
