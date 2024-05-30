@@ -7,6 +7,10 @@
 //https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays
 //https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository
 //https://www.w3schools.com/git/git_commit.asp?remote=github
+//https://www.tutorialsteacher.com/csharp/csharp-delegates
+//https://www.geeksforgeeks.org/c-sharp-delegates/
+//https://www.c-sharpcorner.com/article/a-basic-introduction-of-unit-test-for-beginners/
+//https://learn.microsoft.com/en-us/visualstudio/test/getting-started-with-unit-testing?view=vs-2022&tabs=dotnet%2Cmstest
 
 using System;
 using System.Collections.Generic;
@@ -26,6 +30,7 @@ namespace RecipeApplication.Model
         public string Unit { get; set; }
         public int Calories { get; set; }
         public string FoodGroup { get; set; }
+        //------------------------------------------------------------------------------------------------------------
 
         public Ingredient(string name, double quantity, string unit,int calories,string foodGroup) //Constructor
         {
@@ -37,6 +42,7 @@ namespace RecipeApplication.Model
             Calories = calories;
             FoodGroup = foodGroup;
         }
+        //------------------------------------------------------------------------------------------------------------
 
         public void Scale(double factor) // Method to scale the quantity of the ingredient
         { 

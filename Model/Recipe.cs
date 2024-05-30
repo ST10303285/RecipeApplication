@@ -7,6 +7,10 @@
 //https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays
 //https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository
 //https://www.w3schools.com/git/git_commit.asp?remote=github
+//https://www.tutorialsteacher.com/csharp/csharp-delegates
+//https://www.geeksforgeeks.org/c-sharp-delegates/
+//https://www.c-sharpcorner.com/article/a-basic-introduction-of-unit-test-for-beginners/
+//https://learn.microsoft.com/en-us/visualstudio/test/getting-started-with-unit-testing?view=vs-2022&tabs=dotnet%2Cmstest
 
 using System;
 using System.Collections.Generic;
@@ -28,7 +32,7 @@ namespace RecipeApplication.Model
         private int ingredientCount;
         private int stepCount;
 
-
+        //------------------------------------------------------------------------------------------------------------
         public Recipe(string title) // Constructor
         {
 
@@ -39,7 +43,7 @@ namespace RecipeApplication.Model
             ingredientCount = 0; // Initialize ingredient count to 0
             stepCount = 0; // Initialize step count to 0
         }
-
+        //------------------------------------------------------------------------------------------------------------
 
         public Recipe(Recipe otherRecipe) // Copy Constructor
         {
@@ -69,6 +73,7 @@ namespace RecipeApplication.Model
                 }
             }
         }
+        //------------------------------------------------------------------------------------------------------------
 
         public void AddIngredient(Ingredient ingredient) // Method to add an ingredient
         {
@@ -77,12 +82,14 @@ namespace RecipeApplication.Model
             
         }
 
+        //------------------------------------------------------------------------------------------------------------
         public void AddStep(Step step) // Method to add a step
         {
             
             Steps.Add(step);
             
         }
+        //------------------------------------------------------------------------------------------------------------
 
         public void Display() // Method to display the recipe
         {
@@ -117,13 +124,14 @@ namespace RecipeApplication.Model
                 onCalorieAlert?.Invoke($"Warning! The total calories of the recipe '{Title}' exceed 300!"); // Raise the event
             }
         }
+        //------------------------------------------------------------------------------------------------------------
 
         public int CalculateTotalCalories()
         {
             return Ingredients.Sum(ingredient => ingredient.Calories);
         }
 
-
+        //------------------------------------------------------------------------------------------------------------
 
         public void Scale(double factor) // Method to scale the recipe
         {
@@ -132,6 +140,7 @@ namespace RecipeApplication.Model
                 ingredient.Scale(factor); // Scale the quantity of the ingredient
             }
         }
+        //------------------------------------------------------------------------------------------------------------
 
         public void Reset(List<Ingredient> originalIngredients) // Method to reset the recipe quantities
         {

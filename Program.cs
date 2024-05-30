@@ -9,6 +9,10 @@
 //https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays
 //https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository
 //https://www.w3schools.com/git/git_commit.asp?remote=github
+//https://www.tutorialsteacher.com/csharp/csharp-delegates
+//https://www.geeksforgeeks.org/c-sharp-delegates/
+//https://www.c-sharpcorner.com/article/a-basic-introduction-of-unit-test-for-beginners/
+//https://learn.microsoft.com/en-us/visualstudio/test/getting-started-with-unit-testing?view=vs-2022&tabs=dotnet%2Cmstest
 using System;
 using RecipeApplication.Model;
 using System.Collections.Generic;
@@ -70,7 +74,7 @@ public class Program
             }
         }
     }
-
+    //------------------------------------------------------------------------------------------------------------
     static void DisplayMenu()
     {
         Console.ForegroundColor = ConsoleColor.Magenta;
@@ -87,6 +91,7 @@ public class Program
         Console.Write("Choose an option: ");
         Console.ResetColor();
     }
+    //------------------------------------------------------------------------------------------------------------
 
     static Recipe EnterRecipe()
     {
@@ -169,8 +174,8 @@ public class Program
             return recipe;
         }
 
-    
 
+    //------------------------------------------------------------------------------------------------------------
     static void DisplayAllRecipes()
     {
         if (recipes.Count == 0)
@@ -190,7 +195,7 @@ public class Program
             Console.WriteLine(recipe.Title);
         }
     }
-
+    //------------------------------------------------------------------------------------------------------------
     static void DisplayRecipeByName()
     {
         Console.Write("Enter the name of the recipe to display: ");
@@ -209,6 +214,7 @@ public class Program
             Console.ResetColor();
         }
     }
+    //------------------------------------------------------------------------------------------------------------
 
     static void ScaleRecipe()
     {
@@ -231,6 +237,7 @@ public class Program
             Console.ResetColor();
         }
     }
+    //------------------------------------------------------------------------------------------------------------
 
     static void ResetRecipeQuantities() // Reset the quantities of the recipe
     {
@@ -242,7 +249,7 @@ public class Program
         if (recipe != null && originalIngredientsMap.ContainsKey(name)) // Check if the recipe exists and the original ingredients are available
         {
             recipe.Reset(originalIngredientsMap[name]);
-            Console.WriteLine("Recipe quantities have been reset to original.");
+            Console.WriteLine("Recipe quantities have been reset to original."); // Display success message
         }
         else
         {
@@ -251,7 +258,7 @@ public class Program
             Console.ResetColor();
         }
     }
-
+    //------------------------------------------------------------------------------------------------------------
     static void ClearData()
     {
         recipes.Clear();

@@ -1,60 +1,88 @@
-Recipe Application:
+Recipe Application
 
-This C# console application lets you manage, scale, reset, and create recipes. It has the ability to scale recipe quantities, show recipes, and enter ingredients and steps.
+## Table of Contents
+	- [Description](#description))
+	- [Features](#features)
+	- [Setup](#setup)
+	- [Usage](#usage)
+	- [Running Tests](#running-tests)
+	- [License](#license))
 
-#Table of Contents:
-- Requirements
-- Compiling AND Running the Application
-- Usage Instructions
-- Additional Notes
+## Description:
+The recipe application allows users to enter, manage, and scale recipes. Users can innput ingredients, including their quantities, units, calories and food groups. The application also calculates the total calories of a recipe and alerts the user if the total exceeds 300 calories.
 
-#Requirements:  
-- .NET SDK (version 5.0 or later)
-- A C# IDE or text editor (e.g Visual Studio)
+## Features:
+- Add an unlimited number of recipes.
+- Store additional information for each ingredient: calories and food group.
+- Display a list of all recipes in alphabetical order by name.
+- Choose and display a specific recipe from the list.
+- Scale recipes by a given factor.
+- Reset recipe quantities to original values.
+- Calculate and display the total calories of all ingredients in a recipe.
+- Notify the user when the total calories of a recipe exceed 300.
+- Use generic collections for storing recipes, ingredients, and steps.
+- Unit tests to verify the total calorie calculation functionality.
 
-#Compiling and Running the Application:
-To compile and run the Recipe Application, follow these steps:
+## Setup:
+   a. Clone the Repository using the following command line:
+	git clone<repository-https://github.com/ST10303285/RecipeApplication.git>
+	cd recipe-application
+   b. Open the project in Visual Studio
+	Open Visual Studio
+	Select 'Open a project or solution'
+	Navigate to the 'recipe-application' directory and select 'RecipeApplication.s1n'.
+   c. Go to 'Build' and select 'Restore NuGet Packages'.
 
-1. Clone the GitHub repository to your local machine using the following command:
-  
-   git clone<repository-https://github.com/ST10303285/RecipeApplication.git>
-   
+## Usage:
+To use the Recipe Application:
+   1.Run the application:
+	Press 'F5' or go to 'Debug' then 'Start Debugging'.
+   2.Follow the menu options:
+	-Enter a new recipe.
+	-Display the current recipe.
+	-Scale the recipe.
+	-Reset recipe quantities.
+	-Clear data and enter a new recipe.
+	-Exit the application.
 
-2. Change your current directory to the root of the repository
+## Running Tests:
+Unit tests are provided to verify the total calorie calculation functionality. To run the tests:
+    1. Open Test Explorer:
+	-Go to 'Test;+' and then 'Test Explorer'
+    2. Run All Tests:
+	-Click 'Run All' in the Test Explorer' window.
+    3. Verify Results:
+	-Ensure all tests pass and no errors are reported.
 
-3. Compile the application using the .NET CLI
-  
-   dotnet build
+## License:
+This project is licensed under the MIT License. 
+___________________________________________________________________________________________
 
-4. After compiling the application, you can run it using the .Net CLI
+Based on my lecturer's feedback, I made several improvements to my recipe application:
 
-   dotnet run
+Error Handling: I added error handling to manage null values and incorrect value types, ensuring the program provides meaningful error messages. For instance, I included checks and error messages for invalid inputs when entering ingredient quantities and scaling factors.
 
-5. Follow the on-screen prompts to interact with the Recipe Applictaion
+Code Organization: I improved the code structure by adding separator lines between methods, meaningful comments, and ensuring a blank line at the end of the file. Additionally, I split the classes into separate files to enhance readability and maintainability.
 
-#Usage Instructions:
-- Enter a new recipe: Select the "1" option from the menu. Enter the ingredients, steps, and title of the recipe by following the prompts.
+Functional Enhancements: I ensured that units of measurement remain consistent when scaling recipe quantities, and the scaling logic only affects numerical values.
 
-- Show the current recipe: Select "2" from the menu to see the current recipe presented in an organized manner.
+These changes collectively improved the robustness, readability, and maintainability of the application, aligning it with best practices and making it more user-friendly.
+___________________________________________________________________________________________
 
-- Reduce the recipe's size: Select "3" from the menu. To scale the recipe, you will be asked to enter a scaling factor (e.g., 0.5, 2, or 3).
-
-- Reset recipe quantities: To return the recipe quantities to their initial values, select the "4" option from the menu.
-
-- Delete information and add a new recipe: To start over with a new recipe and erase the existing data, select option "5" from the menu.
-
-- Exit the application: To close the program, select "6" from the menu.
-
-#Additional Notes:
-- Make sure you have installed the necessary.NET SDK before assembling and launching the program.
-- The program handles errors caused by incorrect input. Please adhere to the on-screen instructions if you run into any problems or errors.
-
-references:
+Link to Github Repository:
+https://github.com/ST10303285/RecipeApplication.git
+___________________________________________________________________________________________
+References:
 https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs0163?f1url=%3FappId%3Droslyn%26k%3Dk(CS0163)
 https://learn.microsoft.com/en-us/dotnet/csharp/misc/cs1503?f1url=%3FappId%3Droslyn%26k%3Dk(CS1503)
 https://www.geeksforgeeks.org/c-sharp-how-to-change-foreground-color-of-text-in-console/
 https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays
 https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository
 https://www.w3schools.com/git/git_commit.asp?remote=github
+https://www.tutorialsteacher.com/csharp/csharp-delegates
+https://www.geeksforgeeks.org/c-sharp-delegates/
+https://www.c-sharpcorner.com/article/a-basic-introduction-of-unit-test-for-beginners/
+https://learn.microsoft.com/en-us/visualstudio/test/getting-started-with-unit-testing?view=vs-2022&tabs=dotnet%2Cmstest
+
 
 
