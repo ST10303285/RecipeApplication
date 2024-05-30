@@ -239,7 +239,7 @@ public class Program
 
         Recipe recipe = recipes.FirstOrDefault(r => r.Title.Equals(name, StringComparison.OrdinalIgnoreCase));
 
-        if (recipe != null && originalIngredientsMap.ContainsKey(name))
+        if (recipe != null && originalIngredientsMap.ContainsKey(name)) // Check if the recipe exists and the original ingredients are available
         {
             recipe.Reset(originalIngredientsMap[name]);
             Console.WriteLine("Recipe quantities have been reset to original.");
